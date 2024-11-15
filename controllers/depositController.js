@@ -35,6 +35,7 @@ const deposit = async (req, res) => {
         // Parallelize Cloudinary upload
         console.log("Uploading file to Cloudinary...");
         const payment = await cloudinary.uploader.upload(req.files.proofOfPayment.tempFilePath, {
+            folder: 'ultimate-trade',
             allowed_formats: ['txt', 'doc', 'pdf', 'docx', 'png', 'jpeg'],
             max_file_size: 2000000,
         });

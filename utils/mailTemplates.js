@@ -41,7 +41,7 @@ function sendMail( user) {
 <body>
     <!-- Header with Logo -->
     <div class="header">
-        <img src="https://res.cloudinary.com/dsml73vio/image/upload/v1710259212/pwikajwyszyskzx2uqfj.png" alt="ultimateFx">
+        <img src="https://res.cloudinary.com/dsml73vio/image/upload/v1731661760/samples/animals/ultimateFX_exkkbe.png" alt="ultimateFx">
     </div>
 
     <!-- Content Section -->
@@ -120,7 +120,7 @@ const depositMail = (payment,user) => {
   </head>
   <body>
       <div class="header">
-          <img src="https://res.cloudinary.com/dsml73vio/image/upload/v1710259212/pwikajwyszyskzx2uqfj.png" alt="UltimateFX Logo">
+          <img src="https://res.cloudinary.com/dsml73vio/image/upload/v1731661760/samples/animals/ultimateFX_exkkbe.png" alt="UltimateFX Logo">
       </div>
       <div class="content">
           <p>A new deposit proof of payment has been uploaded. Please review.</p>
@@ -196,7 +196,7 @@ function userEmailTemplate() {
     <body>
         <div class="container">
             <div class="header">
-                <img src="https://res.cloudinary.com/dsml73vio/image/upload/v1710259212/pwikajwyszyskzx2uqfj.png" alt="UltimateFX Logo">
+                <img src="https://res.cloudinary.com/dsml73vio/image/upload/v1731661760/samples/animals/ultimateFX_exkkbe.png" alt="UltimateFX Logo">
             </div>
             <div class="content">
                 <p><strong>Congratulations!</strong> You have successfully uploaded a proof of payment.</p>
@@ -276,7 +276,7 @@ function forgetMail(link){
     <body>
         
             <div class="header">
-                <img src="https://res.cloudinary.com/dsml73vio/image/upload/v1710259212/pwikajwyszyskzx2uqfj.png" alt="MED-VAULT" class="image">
+                <img src="https://res.cloudinary.com/dsml73vio/image/upload/v1731661760/samples/animals/ultimateFX_exkkbe.png" alt="MED-VAULT" class="image">
                 <h1>Password Reset</h1>
             </div>
             <p>Please click on the link below to reset your password:</p>
@@ -349,7 +349,7 @@ function forgetMail(link){
           <body>
               <div class="container">
                   <div class="header">
-                      <img src="https://res.cloudinary.com/dsml73vio/image/upload/v1710259212/pwikajwyszyskzx2uqfj.png" alt="UltimateFX Logo">
+                      <img src="https://res.cloudinary.com/dsml73vio/image/upload/v1731661760/samples/animals/ultimateFX_exkkbe.png" alt="UltimateFX Logo">
                   </div>
                   <div class="content">
                       <h2>Hello Admin,</h2>
