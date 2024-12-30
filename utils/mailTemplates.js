@@ -276,7 +276,7 @@ function forgetMail(link){
     <body>
         
             <div class="header">
-                <img src="https://res.cloudinary.com/dsml73vio/image/upload/v1731661760/samples/animals/ultimateFX_exkkbe.png" alt="MED-VAULT" class="image">
+                <img src="https://res.cloudinary.com/dsml73vio/image/upload/v1731661760/samples/animals/ultimateFX_exkkbe.png" alt="ULTIMATE TRADE" class="image">
                 <h1>Password Reset</h1>
             </div>
             <p>Please click on the link below to reset your password:</p>
