@@ -89,42 +89,58 @@ const resetPassword = async (req, res) => {
     }
   }
   const forgotPassword = async (req, res) => {
-    try {
-        const { email } = req.body;
+  try {
+    const { email } = req.body;
 
-        // Check if the email exists in the userModel
-        const user = await userModel.findOne({ email });
-        if (!user) {
-            return res.status(404).json({
-                message: "User not found"
-            });
-        }
-        console.log(user)
-
-        // Generate a reset token
-        const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: "20m" });
-        const link = `https://localhost:5174/#/forget_password/${token}`;
-
-        const forgetHtml = forgetMail(link);
-        const mailOptions = {
-            from: process.env.AdminMail,
-            email: user.email, // Set the recipient's email address here
-            subject: "Password Reset",
-            html: forgetHtml
-        };
-
-        // Use nodemailer to send the email...
-        await sendEmail(mailOptions);
-
-        res.status(200).json({
-            message: "Password reset email sent successfully"
-        });
-    } catch (error) {
-        console.error("Something went wrong", error.message);
-        res.status(500).json({
-            message: error.message
-        });
+    // Check if the email exists in the userModel
+    if (!email || !email.trim()) {
+      return res.status(400).json({
+        message: "Email is required",
+      });
     }
+
+    const user = await userModel.findOne({ email: email.trim().toLowerCase() });
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    console.log("User found:", user);
+
+    // Generate a reset token
+    const token = jwt.sign(
+      { userId: user._id },
+      process.env.SECRET_KEY,
+      { expiresIn: "20m" }
+    );
+
+    // Construct the reset password link
+    const resetLink = `https://ultimate-tradefx-djva.onrender.com/#/reset_password/${token}`;
+
+    // Prepare email content using the forgetMail function
+    const forgetHtml = forgetMail(resetLink);
+
+    const mailOptions = {
+      email: user.email,
+      subject: "Password Reset",
+      html: forgetHtml,
+    };
+
+    // Send the password reset email
+    await sendEmail(mailOptions);
+
+    res.status(200).json({
+      message: "Password reset email sent successfully",
+      token, // Optional: Include the token only if needed for debugging
+    });
+  } catch (error) {
+    console.error("Error in forgotPassword function:", error.message);
+
+    res.status(500).json({
+      message: "Internal server error. Please try again later.",
+    });
+  }
 };
 
 
