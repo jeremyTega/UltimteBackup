@@ -88,6 +88,8 @@ const resetPassword = async (req, res) => {
       });
     }
   }
+
+  
   const forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
@@ -98,28 +100,30 @@ const resetPassword = async (req, res) => {
         message: "Email is required",
       });
     }
-
-    const user = await userModel.findOne({ email: email.trim().toLowerCase() });
-    if (!user) {
-      return res.status(404).json({
-        message: "User not found",
-      });
+      // Check if the email exists in the userModel
+      const user = await userModel.findOne({ email });
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+     
+   
+    if (user.deactivate === true) {
+      return res.status(400).json({ message: 'User Account not valid' });
     }
 
-    console.log("User found:", user);
+    // Log the email to confirm it's populated
+    console.log(`User email: ${user.email}`);
+    console.log(`Sending email from: ${process.env.user}`);
 
     // Generate a reset token
-    const token = jwt.sign(
-      { userId: user._id },
-      process.env.SECRET_KEY,
-      { expiresIn: "20m" }
-    );
+    const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: "20m" });
+    const link = `https://ultimate-tradefx-djva.onrender.com/#/reset_password/${token}`;
 
-    // Construct the reset password link
-    const resetLink = `https://ultimate-tradefx-djva.onrender.com/#/reset_password/${token}`;
+    // // Construct the reset password link
+    // const resetLink = `https://ultimate-tradefx-djva.onrender.com/#/reset_password/${token}`;
 
     // Prepare email content using the forgetMail function
-    const forgetHtml = forgetMail(resetLink);
+    const forgetHtml = forgetMail(link);
 
     const mailOptions = {
       email: user.email,

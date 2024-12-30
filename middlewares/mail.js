@@ -1,22 +1,17 @@
 const nodemailer = require("nodemailer");
 require("dotenv").config();
 
-
-
-
-
-
 const sendEmail = async (options) => {
     const transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
-        service: "gmail",
-        port: 587,
+        port: 587, // TLS port
+        secure: false, // Use STARTTLS
         auth: {
-            user: process.env.user,
-            pass: process.env.password
+            user: process.env.user, // Your email address
+            pass: process.env.password, // Your email password or App Password
         },
         tls: {
-            rejectUnauthorized: false,
+            rejectUnauthorized: false, // Accept self-signed certificates
         },
     });
 
