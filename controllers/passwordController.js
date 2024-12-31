@@ -89,7 +89,7 @@ const resetPassword = async (req, res) => {
     }
   }
 
-  
+
   const forgotPassword = async (req, res) => {
   try {
     const { email } = req.body;
@@ -117,7 +117,7 @@ const resetPassword = async (req, res) => {
 
     // Generate a reset token
     const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, { expiresIn: "20m" });
-    const link = `https://ultimate-tradefx-djva.onrender.com/#/reset_password/${token}`;
+    const link = `https://ultimate-tradefx-djva.onrender.com/#/reset_password?token=${token}`;
 
     // // Construct the reset password link
     // const resetLink = `https://ultimate-tradefx-djva.onrender.com/#/reset_password/${token}`;
